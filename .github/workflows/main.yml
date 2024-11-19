@@ -16,25 +16,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
+      # Adicione aqui outros passos relevantes para seu projeto.
+      # Se você não precisar instalar dependências com npm, remova essa etapa.
+      # Exemplo:
+      # - name: Install dependencies
+      #   run: your-command-to-install-dependencies
 
-      - name: Install dependencies
-        run: npm install
+      - name: Run a sample script
+        run: echo "Hello, World!"
 
-      - name: Build project
-        run: npm run build
-
-      - name: Deploy to AWS EC2
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        run: |
-          ssh -o StrictHostKeyChecking=no ec2-user@your-ec2-instance-public-ip << 'EOF'
-            cd /path/to/your/project
-            git pull origin main
-            npm install
-            pm2 restart all
-          EOF
+      # Adicione outras etapas que sejam relevantes para seu fluxo de trabalho
